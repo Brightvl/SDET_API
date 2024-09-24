@@ -1,0 +1,15 @@
+{
+  "addition": {
+    "additional_info": "Дополнительные сведения",
+    "additional_number": 123,
+    "id": 1
+  },
+  "id": 1,
+  "important_numbers": [
+    42,
+    87,
+    15
+  ],
+  "title": "Заголовок сущности",
+  "verified": true
+}
