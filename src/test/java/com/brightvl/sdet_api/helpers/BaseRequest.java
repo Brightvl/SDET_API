@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class BaseRequest {
 
     public static RequestSpecification initRequestSpecification() {
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(); // вкл логи при падении
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
         requestSpecBuilder
                 .setContentType(ContentType.JSON)

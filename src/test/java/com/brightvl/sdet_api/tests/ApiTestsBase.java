@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.requestSpecification;
 
 public abstract class ApiTestsBase {
 
-    protected String id;
+
 
     @BeforeAll
     static void beforeAll() {

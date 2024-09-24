@@ -12,7 +12,7 @@ public class DeleteApiTest extends ApiTestsBase {
     public void deleteTest() {
         Response response = Response.createDefaultResponse();
 
-        id = given()
+        String id = given()
                 .spec(requestSpecification)
                 .body(response)
                 .when()

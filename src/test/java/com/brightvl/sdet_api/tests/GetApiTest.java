@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 
 public class GetApiTest extends ApiTestsBase {
-
+    private String id;
     @Test
     public void getTest() {
         Response response = Response.createDefaultResponse();
