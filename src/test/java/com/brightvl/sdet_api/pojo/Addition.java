@@ -20,7 +20,6 @@ public class Addition {
      */
     @Builder.Default
     private int additional_number = 123;
-    private int id;
 }
 
 

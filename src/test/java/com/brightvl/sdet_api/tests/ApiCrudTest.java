@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
+import static org.hamcrest.Matchers.notNullValue;
 
-public class DeleteApiTest {
+public class ApiCrudTest {
+
     private String id;
 
     @BeforeAll
@@ -18,7 +20,8 @@ public class DeleteApiTest {
     }
 
     @Test
-    public void deleteTest() {
+    public void createAndVerifyEntity() {
+        // 1. Создание новой сущности через POST-запрос
         Response response = Response.createDefaultResponse();
 
         id = given()
@@ -28,22 +31,24 @@ public class DeleteApiTest {
                 .post("/create")
                 .then()
                 .statusCode(200)
-                .extract()
-                .asString();
+                .extract().asString();
 
+        // 2. Проверка, что сущность была успешно создана через GET-запрос
         given()
                 .spec(requestSpecification)
                 .when()
-                .delete("/delete/" + id)
+                .get("/get/" + id)
                 .then()
-                .statusCode(204);
+                .statusCode(200)
+                .body("id", notNullValue())
+                .body("title", notNullValue());
     }
 
     @AfterEach
     public void cleanup() {
+        // 3. Удаление созданной сущности после тестов
         if (id != null) {
-            id = null;
+            BaseRequest.deleteTestDataById(id);
         }
     }
-
 }
