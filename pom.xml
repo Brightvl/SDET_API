@@ -82,7 +82,7 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.13.0</version>
                 <configuration>
-                    <buildDirectory>.</buildDirectory>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
                 <executions>
                     <execution>
