@@ -31,7 +31,6 @@ public class GetApiTest {
                 .statusCode(200)
                 .extract()
                 .asString();
-        System.out.println(id);
 
         given()
                 .spec(requestSpecification)
