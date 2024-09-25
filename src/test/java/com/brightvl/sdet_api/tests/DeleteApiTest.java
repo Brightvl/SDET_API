@@ -4,7 +4,6 @@ import com.brightvl.sdet_api.helpers.BaseRequest;
 import com.brightvl.sdet_api.pojo.Response;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

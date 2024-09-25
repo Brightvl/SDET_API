@@ -72,7 +72,7 @@ public class PatchApiTest {
     }
 
     @AfterEach
-    @Step("Удаление тестовых данных с ID: {id}")
+    @Step("Удаление тестовых данных")
     public void cleanup() {
         if (id != null) {
             BaseRequest.deleteTestDataById(id);
