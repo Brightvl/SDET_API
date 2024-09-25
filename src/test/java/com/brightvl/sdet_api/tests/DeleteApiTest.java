@@ -17,17 +17,8 @@ public class DeleteApiTest extends BaseApiTest {
         Response response = Response.createDefaultResponse();
         id = createEntity(response);
 
-        Allure.step("Проверка существования сущности с ID: " + id);
-        given()
-                .spec(requestSpecification)
-                .when()
-                .get("/get/" + id)
-                .then()
-                .statusCode(200);
-
         Allure.step("Отправка DELETE-запроса для удаления сущности с ID: " + id);
-        given()
-                .spec(requestSpecification)
+        given().spec(requestSpecification)
                 .when()
                 .delete("/delete/" + id)
                 .then()

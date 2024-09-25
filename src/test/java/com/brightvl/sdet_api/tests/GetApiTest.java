@@ -29,8 +29,7 @@ public class GetApiTest extends BaseApiTest {
     @Description("Тест на получение всех сущностей через GET-запрос")
     public void getAllTest() {
         Allure.step("Отправка GET-запроса для получения всех сущностей");
-        given()
-                .spec(requestSpecification)
+        given().spec(requestSpecification)
                 .when()
                 .get("/getAll")
                 .then()

@@ -11,6 +11,7 @@ import static io.restassured.RestAssured.requestSpecification;
 
 public abstract class BaseApiTest {
     protected volatile String id;
+
     @BeforeAll
     public static void setup() {
         requestSpecification = BaseRequest.initRequestSpecification();
@@ -23,8 +24,7 @@ public abstract class BaseApiTest {
                 .body(response)
                 .when()
                 .post("/create")
-                .then()
-                .statusCode(200)
+                .then().statusCode(200)
                 .extract()
                 .asString();
     }

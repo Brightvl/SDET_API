@@ -23,18 +23,14 @@ public class PatchApiTest extends BaseApiTest {
         given()
                 .spec(requestSpecification)
                 .body(generatePatchMessage())
-                .when()
-                .patch("/patch/" + id)
-                .then()
-                .statusCode(204);
+                .when().patch("/patch/" + id)
+                .then().statusCode(204);
 
         Allure.step("Проверка обновленной сущности с ID: " + id);
         given()
                 .spec(requestSpecification)
-                .when()
-                .get("/get/" + id)
-                .then()
-                .statusCode(200)
+                .when().get("/get/" + id)
+                .then().statusCode(200)
                 .body("id", notNullValue())
                 .body("verified", equalTo(true));
     }
@@ -42,15 +38,15 @@ public class PatchApiTest extends BaseApiTest {
     @Step("Генерация PATCH-сообщения для обновления сущности")
     private String generatePatchMessage() {
         return """
-            {
-              "important_numbers": [42, 87, 15],
-              "title": "Заголовок сущности",
-              "verified": true,
-              "addition": {
-                "additional_info": "Дополнительные сведения",
-                "additional_number": 123
-              }
-            }
-            """;
+                {
+                  "important_numbers": [42, 87, 15],
+                  "title": "Заголовок сущности",
+                  "verified": true,
+                  "addition": {
+                    "additional_info": "Дополнительные сведения",
+                    "additional_number": 123
+                  }
+                }
+                """;
     }
 }
