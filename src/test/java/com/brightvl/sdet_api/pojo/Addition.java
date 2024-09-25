@@ -20,6 +20,14 @@ public class Addition {
      */
     @Builder.Default
     private int additional_number = 123;
+
+    @Override
+    public String toString() {
+        return "{" +
+                "additional_info:" + additional_info +
+                ", additional_number:" + additional_number +
+                '}';
+    }
 }
 
 

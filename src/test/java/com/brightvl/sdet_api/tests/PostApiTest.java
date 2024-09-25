@@ -25,7 +25,7 @@ public class PostApiTest {
     public void postTest() {
         Response response = Response.createDefaultResponse();
 
-        Allure.step("Отправка POST-запроса для создания сущности с телом: " + response.getTitle());
+        Allure.step("Отправка POST-запроса для создания сущности с телом: " + response.toString());
         given()
                 .spec(requestSpecification)
                 .body(response)

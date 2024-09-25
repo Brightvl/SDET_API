@@ -3,6 +3,7 @@ package com.brightvl.sdet_api.pojo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.List;
 
 @Setter
@@ -27,5 +28,15 @@ public class Response {
                 .verified(true)
                 .addition(addition)
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "important_numbers: " + important_numbers +
+                ", title:" + title +
+                ", verified:" + verified +
+                ", addition:" + addition +
+                '}';
     }
 }
