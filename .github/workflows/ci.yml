@@ -23,13 +23,6 @@ jobs:
       - name: Install dependencies
         run: mvn install
 
-      - name: Start the server
-        run: mvn spring-boot:run &
-        timeout-minutes: 5
-
-      - name: Wait for the server to be ready
-        run: sleep 30
-
       - name: Run tests
         run: mvn test
 
