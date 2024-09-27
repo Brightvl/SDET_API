@@ -3,7 +3,6 @@ package com.brightvl.sdet_api.tests;
 import com.brightvl.sdet_api.pojo.Response;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -22,7 +21,7 @@ public class PatchApiTest extends BaseApiTest {
         Allure.step("Отправка PATCH-запроса для обновления сущности с ID: " + id);
         given()
                 .spec(requestSpecification)
-                .body(generatePatchMessage())
+                .body(Response.createDefaultResponse())
                 .when().patch("/patch/" + id)
                 .then().statusCode(204);
 
@@ -33,20 +32,5 @@ public class PatchApiTest extends BaseApiTest {
                 .then().statusCode(200)
                 .body("id", notNullValue())
                 .body("verified", equalTo(true));
-    }
-
-    @Step("Генерация PATCH-сообщения для обновления сущности")
-    private String generatePatchMessage() {
-        return """
-                {
-                  "important_numbers": [42, 87, 15],
-                  "title": "Заголовок сущности",
-                  "verified": true,
-                  "addition": {
-                    "additional_info": "Дополнительные сведения",
-                    "additional_number": 123
-                  }
-                }
-                """;
     }
 }

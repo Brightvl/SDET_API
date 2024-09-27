@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Setter
 @Getter
@@ -16,18 +19,29 @@ public class Response {
     private boolean verified;
     private Addition addition;
 
+
     public static Response createDefaultResponse() {
-        Addition addition = Addition.builder()
-                .additional_info("Дополнительные сведения")
-                .additional_number(123)
-                .build();
+        Addition addition = Addition.builder().build();
 
         return Response.builder()
-                .important_numbers(List.of(42, 87, 15))
+                .important_numbers(generateRandomNumbers())
                 .title("Заголовок сущности")
                 .verified(true)
                 .addition(addition)
                 .build();
+    }
+
+    /**
+     * Формирует список рандомных чисел
+     *
+     * @return список
+     */
+    private static List<Integer> generateRandomNumbers() {
+        Random random = new Random();
+        int count = random.nextInt(8) + 3;
+        return IntStream.range(0, count)
+                .mapToObj(i -> random.nextInt(101))
+                .collect(Collectors.toList());
     }
 
     @Override
