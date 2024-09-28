@@ -10,18 +10,16 @@ import java.util.Random;
 @Getter
 @Builder
 public class Addition {
-
     /**
      * Дополнительная информация
      */
     @Builder.Default
-    private String ADDITIONAL_INFO = getRandomAdditionalInfo();
-
+    private String additionalInfo = getRandomAdditionalInfo();
     /**
      * Дополнительный номер
      */
     @Builder.Default
-    private int ADDITIONAL_NUMBER = getRandomAdditionalNumber();
+    private int additionalNumber = getRandomAdditionalNumber();
 
     private static String getRandomAdditionalInfo() {
         Random random = new Random();
@@ -36,14 +34,6 @@ public class Addition {
      */
     private static int getRandomAdditionalNumber() {
         return new Random().nextInt(1000);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "additional_info:" + ADDITIONAL_INFO +
-                ", additional_number:" + ADDITIONAL_NUMBER +
-                '}';
     }
 }
 
