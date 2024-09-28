@@ -14,7 +14,7 @@ public class PatchApiTest extends BaseApiTest {
     @Description("Тест на обновление сущности через PATCH-запрос")
     public void patchTest() {
         Entity entity = Entity.createDefaultEntity();
-        id = createEntity(entity);
+        Integer id = createEntity(entity);
 
         Allure.step("Отправка PATCH-запроса для обновления сущности с ID: " + id);
         given()

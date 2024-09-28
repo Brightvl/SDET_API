@@ -11,7 +11,7 @@ public class PostApiTest extends BaseApiTest {
     public void postTest() {
         Entity entity = Entity.createDefaultEntity();
 
-        id = createEntity(entity);
+        Integer id = createEntity(entity);
 
         verifyEntity(id, entity);
     }

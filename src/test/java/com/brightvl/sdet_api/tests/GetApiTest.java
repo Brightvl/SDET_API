@@ -15,7 +15,7 @@ public class GetApiTest extends BaseApiTest {
     @Description("Тест на создание сущности и проверку ее через GET-запрос")
     public void getTest() {
         Entity entity = Entity.createDefaultEntity();
-        id = createEntity(entity);
+        Integer id = createEntity(entity);
 
         Allure.step("Отправка GET-запроса для получения сущности с ID: " + id);
         given()
@@ -31,8 +31,12 @@ public class GetApiTest extends BaseApiTest {
     @Test
     @Description("Тест на получение всех сущностей через GET-запрос")
     public void getAllTest() {
-        Entity entity = Entity.createDefaultEntity();
-        id = createEntity(entity);
+        Entity entity;
+        for (int i = 0; i < 3; i++) {
+            entity = Entity.createDefaultEntity();
+            createEntity(entity);
+            System.out.println(entity);
+        }
 
         Allure.step("Отправка GET-запроса для получения всех сущностей");
         given().spec(requestSpecification)

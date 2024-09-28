@@ -7,31 +7,36 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 
 public abstract class BaseApiTest {
-    protected volatile Integer id;
+    protected final List<Integer> createdEntityIds = new ArrayList<>();
 
     @BeforeAll
     public static void setup() {
         requestSpecification = BaseRequest.initRequestSpecification();
     }
 
-    @Step("Отправка POST-запроса для создания сущности с телом: {entity}")
+    @Step("Отправка POST-запроса для создания сущности")
     protected Integer createEntity(Entity entity) {
-        return Integer.parseInt(given()
+        Integer entityId = Integer.parseInt(given()
                 .spec(requestSpecification)
                 .body(entity)
                 .when().post("/create")
                 .then().statusCode(200)
                 .extract()
                 .asString());
+        createdEntityIds.add(entityId);
+        return entityId;
     }
 
-    @Step("Проверка свойств сущности с ID: {id}")
+    @Step("Проверка свойств сущности")
     protected void verifyEntity(Integer id, Entity entity) {
         given()
                 .spec(requestSpecification)
@@ -46,13 +51,13 @@ public abstract class BaseApiTest {
     @AfterEach
     @Description("Очистка тестовых данных")
     public void cleanup() {
-        if (id != null) {
-            deleteEntityById(id);
-            id = null;
+        for (Integer entityId : new ArrayList<>(createdEntityIds)) {
+            deleteEntityById(entityId);
+            createdEntityIds.remove(entityId);
         }
     }
 
-    @Step("Удаление сущности с ID: {id}")
+    @Step("Удаление сущности")
     protected void deleteEntityById(Integer id) {
         given()
                 .when()
