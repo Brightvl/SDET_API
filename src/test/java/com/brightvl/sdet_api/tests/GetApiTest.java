@@ -31,12 +31,15 @@ public class GetApiTest extends BaseApiTest {
     @Test
     @Description("Тест на получение всех сущностей через GET-запрос")
     public void getAllTest() {
+        Entity entity = Entity.createDefaultEntity();
+        id = createEntity(entity);
+
         Allure.step("Отправка GET-запроса для получения всех сущностей");
         given().spec(requestSpecification)
                 .when().get("/getAll")
                 .then().statusCode(200)
+                .body("entity", not(empty()))
                 .rootPath("entity[0]")
-                .body("", not(empty()))
                 .body("id", notNullValue())
                 .body("title", notNullValue())
                 .body("verified", notNullValue())
